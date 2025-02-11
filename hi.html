@@ -24,7 +24,7 @@
        <option value="">--Select--</option>
        <option value="None">None</option>
        <option value="A small amount, not doing a lot">A small amount, not doing a lot</option>
-       <option value="Enough for a few basic tasks">Some</option>
+       <option value="Enough for a few basic tasks">Enough for a few basic tasks</option>
        <option value="Enough for basic tasks">Enough for basic tasks</option>
        <option value="Can do basic tasks and a few extra things">Can do basic tasks and a few extra things</option>
        <option value="Can get through the day fine">Can get through the day fine</option>
@@ -37,8 +37,10 @@
            const message = document.getElementById('message');
            switch(energy) {
                case 'None':
-                   message.innerHTML = 'Rest is important too! Some days can have nothing in them'
+                   message.innerHTML = 'Rest is important too! Some days can have nothing in them';
                    break;
+             case 'A small amount, not doing a lot':
+                 message.innerHTML = 'That is ok, take a break if you need';
             
                default:
                    message.innerHTML = '';

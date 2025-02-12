@@ -23,10 +23,9 @@
    <select id="energy" onchange="showMessage()">
        <option value="">--Select--</option>
        <option value="None">None</option>
-       <option value="A small amount, not doing a lot">A small amount, not doing a lot</option>
+       <option value="A small amount not doing a lot">A small amount not doing a lot</option>
        <option value="Enough for a few basic tasks">Enough for a few basic tasks</option>
        <option value="Enough for basic tasks">Enough for basic tasks</option>
-       <option value="Can do basic tasks and a few extra things">Can do basic tasks and a few extra things</option>
        <option value="Can get through the day fine">Can get through the day fine</option>
        <option value="Too much energy">Too much energy</option>
    </select>
@@ -39,19 +38,25 @@
                case 'None':
                    message.innerHTML = 'Rest is important too! Some days can have nothing in them';
                    break;
-             case 'A small amount, not doing a lot':
-                 message.innerHTML = 'That is ok, take a break if you need';
-            
-               default:
-                   message.innerHTML = '';
+                case 'A small amount not doing a lot':
+                    message.innerHTML = 'That is ok, take a break if you need';
+                    break;
+                case 'Enough for a few small tasks':
+                    message.innerHTML = 'Get those done then, something is always better than nothing';
+                    break;
+                case 'Enough for basic tasks':
+                    message.innerHTML = 'Get stuff done when you can then you can rest';
+                    break;
+                case 'Can get through the day fine':
+                    message.innerHTML = '';
+                    break;
+               default: 
+                message.innerHTML = '';
+                break;
               
            }
        }
    </script>
-  
-   <p>__</p>
-
-
   </body>
   <body>
    <label for="feeling">How are you feeling today?</label>
@@ -61,8 +66,8 @@
       <option value="sad">Sad</option>
       <option value="excited">Excited</option>
       <option value="tired">Tired</option>
-      <option value ="overwhelmed">Overwhelmed</option>
-      <option value ="worried">Worried</option>
+      <option value="overwhelmed">Overwhelmed</option>
+      <option value="worried">Worried</option>
   </select>
   <div id="message"></div>
   <script>
@@ -93,13 +98,13 @@
           }
       }
   </script>
-
-
 </body>
+
   <footer>
       <p><i>This site was created by Kacie</i> This site was created as a Gold Award project and it is meant to help people track various symptoms of their mental health in their day-to-day lives.</p>
   </footer>
 </html>
+
 <style>
   body {
       background-color: skyblue;
@@ -112,8 +117,3 @@
       font-family:Verdana
   }
 </style>
-
-
-
-
-

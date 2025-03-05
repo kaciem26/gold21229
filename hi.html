@@ -2,6 +2,7 @@
 <html lang="en">
   <header>
       <h1>Welcome!</h1>
+    
   </header>
 <body>
   <p> Login To Save And Access Data Here </p>
@@ -22,12 +23,12 @@
    <label for="energy">How much energy do you have today?</label>
    <select id="energy" onchange="showMessage()">
        <option value="">--Select--</option>
-       <option value="None">None</option>
-       <option value="A small amount not doing a lot">A small amount not doing a lot</option>
-       <option value="Enough for a few basic tasks">Enough for a few basic tasks</option>
-       <option value="Enough for basic tasks">Enough for basic tasks</option>
-       <option value="Can get through the day fine">Can get through the day fine</option>
-       <option value="Too much energy">Too much energy</option>
+       <option value="none">None</option>
+       <option value="a small amount not doing a lot">A small amount not doing a lot</option>
+       <option value="enough for a few basic tasks">Enough for a few basic tasks</option>
+       <option value="enough for basic tasks">Enough for basic tasks</option>
+       <option value="can get through the day fine">Can get through the day fine</option>
+       <option value="too much energy">Too much energy</option>
    </select>
    <div id="energy"></div>
    <script>
@@ -35,22 +36,22 @@
            const energy = document.getElementById('energy').value;
            const message = document.getElementById('message');
            switch(energy) {
-               case 'None':
+               case 'none':
                    message.innerHTML = 'Rest is important too! Some days can have nothing in them';
                    break;
-                case 'A small amount not doing a lot':
+                case 'a small amount not doing a lot':
                     message.innerHTML = 'That is ok, take a break if you need';
                     break;
-                case 'Enough for a few small tasks':
+                case 'enough for a few small tasks':
                     message.innerHTML = 'Get those done then, something is always better than nothing';
                     break;
-                case 'Enough for basic tasks':
+                case 'enough for basic tasks':
                     message.innerHTML = 'Get stuff done when you can then you can rest';
                     break;
-                case 'Can get through the day fine':
+                case 'can get through the day fine':
                     message.innerHTML = 'Thats great!';
                     break;
-               case 'Too much energy':
+               case 'too much energy':
                     message.innerHTML = 'Run around! Dance! Get your energy out!';
                     break;
                default: 

@@ -17,93 +17,15 @@
       </p>
       <h3> How It Could Help:</h3>
       <p> This site could help with tracking symptoms to get a proper diagnosis. It also can help to see how your symptoms and moods change day to day. </p>
-
+    <form action="/action_page.php">  
+     <label for="Energy">How much energy do you have? (between 1 and 10):</label>
+     <input type="number" id="Energy" name="Energy" min="1" max="10">
+      <p>What are you feeling like today?</p>
+      <input type="checkbox" id="feelings" name="feeling1" value="excited">
+      <label for="feeling1" Happy> </label></br>
+      
   </body>
 </head>
-<body>
-   <label for="energy">How much energy do you have today?</label>
-   <select id="energy" onchange="showMessage()">
-       <option value="">--Select--</option>
-       <option value="none">None</option>
-       <option value="a small amount not doing a lot">A small amount not doing a lot</option>
-       <option value="enough for a few basic tasks">Enough for a few basic tasks</option>
-       <option value="enough for basic tasks">Enough for basic tasks</option>
-       <option value="can get through the day fine">Can get through the day fine</option>
-       <option value="too much energy">Too much energy</option>
-   </select>
-   <div id="energy"></div>
-   <script>
-       function showEnergy() {
-           const energy = document.getElementById('energy').value;
-           const message = document.getElementById('message');
-           switch(energy) {
-               case 'none':
-                   message.innerHTML = 'Rest is important too! Some days can have nothing in them';
-                   break;
-                case 'a small amount not doing a lot':
-                    message.innerHTML = 'That is ok, take a break if you need';
-                    break;
-                case 'enough for a few small tasks':
-                    message.innerHTML = 'Get those done then, something is always better than nothing';
-                    break;
-                case 'enough for basic tasks':
-                    message.innerHTML = 'Get stuff done when you can then you can rest';
-                    break;
-                case 'can get through the day fine':
-                    message.innerHTML = 'Thats great!';
-                    break;
-               case 'too much energy':
-                    message.innerHTML = 'Run around! Dance! Get your energy out!';
-                    break;
-               default: 
-                message.innerHTML = '';
-                break;
-              
-           }
-       }
-   </script>
-  </body>
-  <body>
-   <label for="feeling">How are you feeling today?</label>
-  <select id="feeling" onchange="showMessage()">
-      <option value="">--Select--</option>
-      <option value="happy">Happy</option>
-      <option value="sad">Sad</option>
-      <option value="excited">Excited</option>
-      <option value="tired">Tired</option>
-      <option value="overwhelmed">Overwhelmed</option>
-      <option value="worried">Worried</option>
-  </select>
-  <div id="message"></div>
-  <script>
-      function showMessage() {
-          const feeling = document.getElementById('feeling').value;
-          const message = document.getElementById('message');
-          switch(feeling) {
-              case 'happy':
-                  message.innerHTML = 'That’s great! Keep smiling!';
-                  break;
-              case 'sad':
-                  message.innerHTML = 'If you need to talk, its good to have a trusted friend';
-                  break;
-              case 'excited':
-                  message.innerHTML = 'Awesome!';
-                  break;
-              case 'tired':
-                  message.innerHTML = 'Rest up! You deserve it.';
-                  break;
-              case 'overwhelmed':
-                  message.innerHTML = 'Take a few deep breaths. If you have a lot to do, try to plan out each little step and focus on them one at a time.';
-                  break;
-              case 'worried':
-                  message.innerHTML = 'Take a few deep breaths, try to figure out what is bothering you and blow it away with your breaths.';
-                  break;
-              default:
-                  message.innerHTML = '';
-          }
-      }
-  </script>
-</body>
 
   <footer>
       <p><i>This site was created by Kacie</i> This site was created as a Gold Award project and it is meant to help people track various symptoms of their mental health in their day-to-day lives.</p>

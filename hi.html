@@ -58,3 +58,15 @@
       font-family:Verdana
   }
 </style>
+<script>
+ // just figuring out how to save the form client-side :) 
+  const form = document.getElementById('myForm');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        localStorage.setItem('formData', JSON.stringify(data));
+    });
+    // To retrieve the data:
+    const savedData = JSON.parse(localStorage.getItem('formData'));
+</script>

@@ -19,8 +19,10 @@
     <h3>Daily Check-In</h3>
     <form action="/action_page.php">  
      <label for="Energy">How much energy do you have? (between 1 and 10):</label><br>
-      <p>1 is no energy, 5 is normal amount, and 10 is a lot of energy</p>
-     <input type="number" id="Energy" name="Energy" min="1" max="10">
+        <p>1 is no energy, 5 is normal amount, and 10 is a lot of energy</p>
+       <input type="number" id="Energy" name="Energy" min="1" max="10">
+     <label for="Sleep">Hoe many hours of sleep did you get last night?</label><br>
+      <input type="number" id="Sleep" name="Sleep" min="0" max="24">
       <p>What are you feeling like today?</p>
         <input type="checkbox" id="feelings" name="feeling1" value="excited">
         <label for="feeling1"> Excited </label><br>
@@ -34,10 +36,10 @@
         <label for="feeling5"> Tired</label><br>
       <p>What symptoms did you experience today? (Examples: more anxious; loss of appitite/gain of appitite; felt more 'normal'; etc.) </p>
       <input type="text"><br>
-       <input type="submit" value="Submit">
+       <input type="button" value="Submit">
       <p>Thanks for checking in!</p>
     </form>     
-    
+    <p>Use this to see your previous forms! (Use to keep track of various symptoms.)</p>
   </body>
 </head>
 

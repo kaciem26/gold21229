@@ -17,12 +17,18 @@
       <p> This site could help with tracking symptoms to get a proper diagnosis. It also can help to see how your symptoms and moods change day to day. </p>
    <br>
     <h3>Daily Check-In</h3>
-    <form action="/action_page.php">  
+    <form>  
      <label for="Energy">How much energy do you have? (between 1 and 10):</label><br>
         <p>1 is no energy, 5 is normal amount, and 10 is a lot of energy</p>
        <input type="number" id="Energy" name="Energy" min="1" max="10"><br>
-     <label for="Sleep">How many hours of sleep did you get last night?</label><br>
+     <label for="Sleep">How many hours of sleep did you get in the last 24 hours?</label><br>
       <input type="number" id="Sleep" name="Sleep" min="0" max="24">
+      <label for="appetite"> Did your appitite increase or decrease today or did it stay similar to the past day?</label><br>
+        <select id="food" name="appetite">
+          <option value="decrease">Decrease</option><br>
+          <option valuie="increase">Increase</option><br>
+          <option value="stay same">Stayed the same</option><br>
+        </select>
       <p>What are you feeling like right now?</p>
         <input type="checkbox" id="feelings" name="feeling1" value="excited">
         <label for="feeling1"> Excited </label><br>
@@ -34,6 +40,8 @@
         <label for="feeling4"> Worried </label><br>
         <input type="checkbox" id="feelings" name="feeling5" value="tired">
         <label for="feeling5"> Tired</label><br>
+        <input type="checkbox" id="feelings" name="feeling6" value="other">
+        <label for="feeling6"> Other </label><br>
       <p>What other symptoms did you experience today? Include anything that the form did not go over that you feel needs to be included.</p>
       <input type="text"><br>
        <input type="button" value="Submit">
@@ -63,15 +71,3 @@
     background-color: white;
   }
 </style>
-<script>
- // just figuring out how to save the form client-side :) 
-  const form = document.getElementById('myForm');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-        localStorage.setItem('formData', JSON.stringify(data));
-    });
-    // To retrieve the data:
-    const savedData = JSON.parse(localStorage.getItem('formData'));
-</script>

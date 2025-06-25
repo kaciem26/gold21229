@@ -14,11 +14,15 @@
    <br>
     <h3>Daily Check-In</h3>
     <form id="checkup">  
-     <label for="Energy">How much energy do you have? (between 1 and 10):</label>
+     <div>
+      <label for="Energy">How much energy do you have? (between 1 and 10):</label>
         <p>1 is no energy, 5 is normal amount, and 10 is a lot of energy</p>
        <input type="number" id="Energy" name="Energy" min="1" max="10"><br>
+     </div> 
+    <div>
      <label for="Sleep">How many hours of sleep did you get in the last 24 hours?</label><br>
       <input type="number" id="Sleep" name="Sleep" min="0" max="24"></br>
+    </div>
       <label for="appetite"> Did your appitite increase or decrease today or did it stay similar to the past day?</label><br>
         <select id="food" name="appetite">
           <option value="decrease">Decrease</option><br>

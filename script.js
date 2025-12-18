@@ -129,8 +129,6 @@ async function loadPastEntries(uid) {
     pastEntries.appendChild(div);
   });
 }
-</script>
-</html>
 
 </script>
-</head>
+</html>

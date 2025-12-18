@@ -1,298 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <header>
-      <h1>Welcome! I'm glad you're here today.</h1>
-  </header>
-<body>
- 
-<br>
-      <h3> What This Site Does:</h3>
-      <p> This website was created to be a simple way for anyone to track various mental health symptoms as a way of improving and cataloging their health. It is meant for tracking moods and symptoms around once a day to see trends or other patterns that can then be shown to an actual professional. This website is not meant to diagnose anyone but as a tool for an actual professional to help diagnose.
-      </p>
-      <h3> How It Could Help:</h3>
-      <p> This site could help with tracking symptoms to get a proper diagnosis. It also can help to see how your symptoms and moods change day to day. Why track? Tracking your mental health can lead to an increase in postivity and overall wellbeing. As well as a way for you or a professional to make sure you are meeting goals. It could also be used as a way to show that you do met criteria for specfic care needs that may not happen otherwise.</p>
-   <br>
-    <h3>Daily Check-In</h3>
-    <form id="checkup">  
-     <div>
-      <label for="Energy">How much energy do you have? (between 1 and 10):</label>
-        <p>1 is no energy, 5 is normal amount, and 10 is a lot of energy</p>
-       <input type="number" id="Energy" name="Energy" min="1" max="10"><br>
-     </div> 
-    <div>
-     <label for="Sleep">How many hours of sleep did you get in the last 24 hours?</label><br>
-      <input type="number" id="Sleep" name="Sleep" min="0" max="24"></br>
-    </div>
-      <label for="appetite"> Did your appitite increase or decrease today or did it stay similar to the past day?</label><br>
-        <select id="food" name="appetite">
-          <option value="decrease">Decrease</option><br>
-          <option valuie="increase">Increase</option><br>
-          <option value="stay same">Stayed the same</option><br>
-        </select></br>
-      <label for="sad">Have you been feeling hopeless or more depressed today?</label></br>
-        <select id="sad" name="sad">
-          <option value="no">No or n/a </option><br>
-          <option value="more than yesterday">More than yesterday</option><br>
-          <option value="less than yesterday">Less than yesterday</option><br>
-          <option value="the same">About the same</option><br>
-        </select>
-      <p>What are you feeling like right now?</p>
-        <input type="checkbox" id="feelings" name="feeling1" value="excited">
-          <label for="feeling1"> Excited </label><br>
-        <input type="checkbox" id="feeling" name="feeling2" value="happy">
-          <label for="feeling2"> Happy </label><br>
-        <input type="checkbox" id="feelings" name="feeling3" value="sad">
-          <label for="feeling3"> Sad </label><br>
-        <input type="checkbox" id="feelings" name="feeling4" value="worried">
-          <label for="feeling4"> Worried </label><br>
-        <input type="checkbox" id="feelings" name="feeling5" value="tired">
-          <label for="feeling5"> Tired</label><br>
-        <input type="checkbox" id="feeling" name="feeling6" vaue="calm">
-          <label for="feeling6"> Calm</label><br>
-        <input type="checkbox" id="feelings" name="feeling7" value="other">
-          <label for="feeling7"> Other </label><br>   
-      <p> If other, what is that feeling?</p>
-      <input type="text"><br>
-      <p>What other symptoms did you experience today? Include anything that the form did not go over that you feel needs to be included.</p>
-      <input type="text"><br>
-      <label for="date">Date</label>
-      <input type="date">
-      <br>
-         <input type="submit">
-    </form> 
-  <br>
-  <p>Thanks for checking in!</p><br>
-
-  
-  </body>
-</head>
-
-  <footer>
-      <p><i>This site was created by Kacie Myers </i> This site was created as a Gold Award project and it is meant to help people track various symptoms of their mental health in their day-to-day lives.</p>
-    
-  </footer>
-</html>
-<script>
-function myFunction() {
-  document.getElementById("frm1").submit();
-}
-
-</script>
-<style>
-  body {
-      background-color: navyblue;
-      font-family: Arial, sans-serif;
-      margin: 20px;
-  }
-  #label {
-      margin-top: 10px;
-      font-weight: bold;
-      font-family:Verdana
-  }
-  footer {
-    background-color: white;
-    font-family: Times New Roman;
-    margin: 10px;
-  }
-  output {
-    display: inline
-  }
-</style>
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daily Check-In</title>
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/10.16.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.16.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.16.0/firebase-firestore.js"></script>
-</head>
-<body>
-
-<h2>Daily Check-In</h2>
-
-<!-- Login button -->
-<button id="loginBtn">Login with Google</button>
-<button id="logoutBtn" style="display:none;">Logout</button>
-<p id="userInfo"></p>
-
-<form id="checkup" style="display:none;">
-  <div>
-    <label for="Energy">How much energy do you have? (1-10):</label>
-    <p>1 is no energy, 5 is normal amount, 10 is a lot of energy</p>
-    <input type="number" id="Energy" name="Energy" min="1" max="10" required><br>
-  </div>
-
-  <div>
-    <label for="Sleep">Hours of sleep in last 24h:</label><br>
-    <input type="number" id="Sleep" name="Sleep" min="0" max="24" required><br>
-  </div>
-
-  <label for="appetite">Appetite change:</label><br>
-  <select id="food" name="appetite">
-    <option value="decrease">Decrease</option>
-    <option value="increase">Increase</option>
-    <option value="stay same">Stayed the same</option>
-  </select><br>
-
-  <label for="sad">Feeling hopeless or depressed today?</label><br>
-  <select id="sad" name="sad">
-    <option value="no">No or n/a</option>
-    <option value="more than yesterday">More than yesterday</option>
-    <option value="less than yesterday">Less than yesterday</option>
-    <option value="the same">About the same</option>
-  </select><br>
-
-  <p>Current feelings:</p>
-  <input type="checkbox" id="feeling1" name="feelings" value="excited"><label for="feeling1"> Excited</label><br>
-  <input type="checkbox" id="feeling2" name="feelings" value="happy"><label for="feeling2"> Happy</label><br>
-  <input type="checkbox" id="feeling3" name="feelings" value="sad"><label for="feeling3"> Sad</label><br>
-  <input type="checkbox" id="feeling4" name="feelings" value="worried"><label for="feeling4"> Worried</label><br>
-  <input type="checkbox" id="feeling5" name="feelings" value="tired"><label for="feeling5"> Tired</label><br>
-  <input type="checkbox" id="feeling6" name="feelings" value="calm"><label for="feeling6"> Calm</label><br>
-  <input type="checkbox" id="feeling7" name="feelings" value="other"><label for="feeling7"> Other</label><br>
-
-  <p>If other, what is that feeling?</p>
-  <input type="text" id="otherFeeling" name="otherFeeling"><br>
-
-  <p>Other symptoms:</p>
-  <input type="text" id="otherSymptoms" name="otherSymptoms"><br>
-
-  <label for="date">Date:</label>
-  <input type="date" id="date" name="date" required><br>
-
-  <input type="submit">
-</form>
-
-<h3>Your Past Entries:</h3>
-<div id="pastEntries"></div>
-
-<script>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAbpBMm_zpny9e8xj9bgp6wNf4sND6ty38",
-    authDomain: "mentalhealthtracker-8d8cf.firebaseapp.com",
-    projectId: "mentalhealthtracker-8d8cf",
-    storageBucket: "mentalhealthtracker-8d8cf.firebasestorage.app",
-    messagingSenderId: "234371734335",
-    appId: "1:234371734335:web:c36a4468a596119930918a",
-    measurementId: "G-HRKMZRVRBF"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-
-const app = firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
-
-const loginBtn = document.getElementById("loginBtn");
-const logoutBtn = document.getElementById("logoutBtn");
-const userInfo = document.getElementById("userInfo");
-const form = document.getElementById("checkup");
-const pastEntries = document.getElementById("pastEntries");
-
-// Google login
-loginBtn.addEventListener("click", () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider);
-});
-
-logoutBtn.addEventListener("click", () => {
-  auth.signOut();
-});
-
-// Auth state listener
-auth.onAuthStateChanged(user => {
-  if (user) {
-    loginBtn.style.display = "none";
-    logoutBtn.style.display = "inline";
-    form.style.display = "block";
-    userInfo.textContent = `Logged in as ${user.displayName} (${user.email})`;
-    loadPastEntries(user.uid);
-  } else {
-    loginBtn.style.display = "inline";
-    logoutBtn.style.display = "none";
-    form.style.display = "none";
-    userInfo.textContent = "";
-    pastEntries.innerHTML = "";
-  }
-});
-
-// Form submission
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const user = auth.currentUser;
-  if (!user) return alert("Please log in first!");
-
-  const feelingsChecked = Array.from(document.querySelectorAll('input[name="feelings"]:checked')).map(f => f.value);
-
-  await db.collection("checkins").add({
-    uid: user.uid,
-    Energy: document.getElementById("Energy").value,
-    Sleep: document.getElementById("Sleep").value,
-    appetite: document.getElementById("food").value,
-    sad: document.getElementById("sad").value,
-    feelings: feelingsChecked,
-    otherFeeling: document.getElementById("otherFeeling").value,
-    otherSymptoms: document.getElementById("otherSymptoms").value,
-    date: document.getElementById("date").value,
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-  });
-
-  alert("Check-in submitted!");
-  form.reset();
-  loadPastEntries(user.uid);
-});
-
-// Load past entries
-async function loadPastEntries(uid) {
-  pastEntries.innerHTML = "";
-  const snapshot = await db.collection("checkins")
-    .where("uid", "==", uid)
-    .orderBy("timestamp", "desc")
-    .get();
-
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    const entryDiv = document.createElement("div");
-    entryDiv.style.border = "1px solid gray";
-    entryDiv.style.margin = "5px";
-    entryDiv.style.padding = "5px";
-    entryDiv.innerHTML = `
-      <strong>Date:</strong> ${data.date}<br>
-      <strong>Energy:</strong> ${data.Energy}<br>
-      <strong>Sleep:</strong> ${data.Sleep}<br>
-      <strong>Appetite:</strong> ${data.appetite}<br>
-      <strong>Sadness:</strong> ${data.sad}<br>
-      <strong>Feelings:</strong> ${data.feelings.join(", ")}<br>
-      <strong>Other Feeling:</strong> ${data.otherFeeling}<br>
-      <strong>Other Symptoms:</strong> ${data.otherSymptoms}<br>
-    `;
-    pastEntries.appendChild(entryDiv);
-  });
-}
-</script>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daily Check-In</title>
+<title>Daily Mental Health Check-In</title>
 <link rel="stylesheet" href="style.css">
 
 <!-- Firebase SDKs -->
@@ -302,23 +13,28 @@ async function loadPastEntries(uid) {
 </head>
 <body>
 
-<h2>Daily Check-In</h2>
+<h2>Daily Mental Health Check-In</h2>
 
+<!-- Login -->
 <button id="loginBtn">Login with Google</button>
 <button id="logoutBtn" style="display:none;">Logout</button>
 <p id="userInfo"></p>
 
+<!-- Form -->
 <form id="checkup" style="display:none;">
-  <!-- Energy -->
-  <label for="Energy">Energy (1-10):</label>
-  <input type="number" id="Energy" name="Energy" min="1" max="10" required><br>
-
   <!-- Sleep -->
-  <label for="Sleep">Hours of sleep:</label>
+  <label for="Sleep">Hours of sleep (last 24h):</label>
   <input type="number" id="Sleep" name="Sleep" min="0" max="24" required><br>
 
+  <label for="sleepQuality">Sleep quality (1–10):</label>
+  <input type="number" id="sleepQuality" name="sleepQuality" min="1" max="10"><br>
+
+  <!-- Energy -->
+  <label for="Energy">Energy level (1–10):</label>
+  <input type="number" id="Energy" name="Energy" min="1" max="10"><br>
+
   <!-- Appetite -->
-  <label for="food">Appetite change:</label>
+  <label for="food">Appetite today:</label>
   <select id="food" name="appetite">
     <option value="decrease">Decrease</option>
     <option value="increase">Increase</option>
@@ -326,13 +42,48 @@ async function loadPastEntries(uid) {
   </select><br>
 
   <!-- Mood -->
-  <label for="sad">Feeling hopeless/depressed today?</label>
+  <label for="mood">Overall mood (1–10):</label>
+  <input type="number" id="mood" name="mood" min="1" max="10"><br>
+
+  <label for="sad">Feeling hopeless or depressed?</label>
   <select id="sad" name="sad">
-    <option value="no">No or n/a</option>
+    <option value="no">No / N/A</option>
     <option value="more than yesterday">More than yesterday</option>
     <option value="less than yesterday">Less than yesterday</option>
     <option value="the same">About the same</option>
   </select><br>
+
+  <!-- Stress & Anxiety -->
+  <label for="stress">Stress level (1–10):</label>
+  <input type="number" id="stress" name="stress" min="1" max="10"><br>
+
+  <label for="anxiety">Anxiety level (1–10):</label>
+  <input type="number" id="anxiety" name="anxiety" min="1" max="10"><br>
+
+  <!-- Motivation & Focus -->
+  <label for="motivation">Motivation (1–10):</label>
+  <input type="number" id="motivation" name="motivation" min="1" max="10"><br>
+
+  <label for="focus">Focus/concentration (1–10):</label>
+  <input type="number" id="focus" name="focus" min="1" max="10"><br>
+
+  <!-- Social Interaction -->
+  <label for="social">Social connection today:</label>
+  <select id="social" name="social">
+    <option value="none">None</option>
+    <option value="some">Some</option>
+    <option value="a lot">A lot</option>
+  </select><br>
+
+  <!-- Coping Strategies -->
+  <label for="coping">Coping strategies used (select all that apply):</label><br>
+  <input type="checkbox" name="coping" value="meditation"> Meditation<br>
+  <input type="checkbox" name="coping" value="exercise"> Exercise<br>
+  <input type="checkbox" name="coping" value="journaling"> Journaling<br>
+  <input type="checkbox" name="coping" value="talking"> Talking with someone<br>
+  <input type="checkbox" name="coping" value="other"> Other<br>
+  <label for="otherCoping">If other, describe:</label>
+  <input type="text" id="otherCoping" name="otherCoping"><br>
 
   <!-- Feelings -->
   <p>Current feelings:</p>
@@ -343,13 +94,14 @@ async function loadPastEntries(uid) {
   <input type="checkbox" id="feeling5" name="feelings" value="tired"><label for="feeling5"> Tired</label><br>
   <input type="checkbox" id="feeling6" name="feelings" value="calm"><label for="feeling6"> Calm</label><br>
   <input type="checkbox" id="feeling7" name="feelings" value="other"><label for="feeling7"> Other</label><br>
-
-  <label for="otherFeeling">If other, what?</label>
+  <label for="otherFeeling">If other, describe:</label>
   <input type="text" id="otherFeeling" name="otherFeeling"><br>
 
-  <label for="otherSymptoms">Other symptoms:</label>
+  <!-- Additional Notes -->
+  <label for="otherSymptoms">Other notes/symptoms:</label>
   <input type="text" id="otherSymptoms" name="otherSymptoms"><br>
 
+  <!-- Date -->
   <label for="date">Date:</label>
   <input type="date" id="date" name="date" required><br>
 
@@ -362,205 +114,3 @@ async function loadPastEntries(uid) {
 <script src="script.js"></script>
 </body>
 </html>
-// Firebase config
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-
-const app = firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
-
-const loginBtn = document.getElementById("loginBtn");
-const logoutBtn = document.getElementById("logoutBtn");
-const userInfo = document.getElementById("userInfo");
-const form = document.getElementById("checkup");
-const pastEntries = document.getElementById("pastEntries");
-
-// Login / Logout
-loginBtn.addEventListener("click", () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider);
-});
-
-logoutBtn.addEventListener("click", () => auth.signOut());
-
-auth.onAuthStateChanged(user => {
-  if (user) {
-    loginBtn.style.display = "none";
-    logoutBtn.style.display = "inline";
-    form.style.display = "block";
-    userInfo.textContent = `Logged in as ${user.displayName} (${user.email})`;
-    loadPastEntries(user.uid);
-  } else {
-    loginBtn.style.display = "inline";
-    logoutBtn.style.display = "none";
-    form.style.display = "none";
-    userInfo.textContent = "";
-    pastEntries.innerHTML = "";
-  }
-});
-
-// Form submission
-form.addEventListener("submit", async e => {
-  e.preventDefault();
-  const user = auth.currentUser;
-  if (!user) return alert("Please log in first!");
-
-  const feelingsChecked = Array.from(document.querySelectorAll('input[name="feelings"]:checked')).map(f => f.value);
-
-  await db.collection("checkins").add({
-    uid: user.uid,
-    Energy: document.getElementById("Energy").value,
-    Sleep: document.getElementById("Sleep").value,
-    appetite: document.getElementById("food").value,
-    sad: document.getElementById("sad").value,
-    feelings: feelingsChecked,
-    otherFeeling: document.getElementById("otherFeeling").value,
-    otherSymptoms: document.getElementById("otherSymptoms").value,
-    date: document.getElementById("date").value,
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-  });
-
-  alert("Check-in submitted!");
-  form.reset();
-  loadPastEntries(user.uid);
-});
-
-// Load past entries
-async function loadPastEntries(uid) {
-  pastEntries.innerHTML = "";
-  const snapshot = await db.collection("checkins")
-    .where("uid", "==", uid)
-    .orderBy("timestamp", "desc")
-    .get();
-
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    const entryDiv = document.createElement("div");
-    entryDiv.style.border = "1px solid gray";
-    entryDiv.style.margin = "5px";
-    entryDiv.style.padding = "5px";
-    entryDiv.innerHTML = `
-      <strong>Date:</strong> ${data.date}<br>
-      <strong>Energy:</strong> ${data.Energy}<br>
-      <strong>Sleep:</strong> ${data.Sleep}<br>
-      <strong>Appetite:</strong> ${data.appetite}<br>
-      <strong>Sadness:</strong> ${data.sad}<br>
-      <strong>Feelings:</strong> ${data.feelings.join(", ")}<br>
-      <strong>Other Feeling:</strong> ${data.otherFeeling}<br>
-      <strong>Other Symptoms:</strong> ${data.otherSymptoms}<br>
-    `;
-    pastEntries.appendChild(entryDiv);
-  });
-}
-</body>
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-}
-
-form div, form label {
-  margin-bottom: 10px;
-}
-
-input, select {
-  margin-bottom: 10px;
-}
-</html>
-
-<h3>Daily Mental Health Check-In</h3>
-<form id="checkup">
-
-  <!-- Sleep -->
-  <label for="Sleep">Hours of sleep in the last 24h:</label>
-  <input type="number" id="Sleep" name="Sleep" min="0" max="24" required><br>
-
-  <label for="sleepQuality">Sleep quality (1 = very poor, 10 = excellent):</label>
-  <input type="number" id="sleepQuality" name="sleepQuality" min="1" max="10"><br>
-
-  <!-- Energy -->
-  <label for="Energy">Energy level today (1 = none, 10 = high):</label>
-  <input type="number" id="Energy" name="Energy" min="1" max="10"><br>
-
-  <!-- Appetite -->
-  <label for="food">Appetite today:</label>
-  <select id="food" name="appetite">
-    <option value="decrease">Decrease</option>
-    <option value="increase">Increase</option>
-    <option value="stay same">Stayed the same</option>
-  </select><br>
-
-  <!-- Mood -->
-  <label for="mood">Overall mood today (1 = very bad, 10 = very good):</label>
-  <input type="number" id="mood" name="mood" min="1" max="10"><br>
-
-  <label for="sad">Feeling hopeless or depressed today?</label>
-  <select id="sad" name="sad">
-    <option value="no">No / N/A</option>
-    <option value="more than yesterday">More than yesterday</option>
-    <option value="less than yesterday">Less than yesterday</option>
-    <option value="the same">About the same</option>
-  </select><br>
-
-  <!-- Stress & Anxiety -->
-  <label for="stress">Stress level today (1 = none, 10 = extreme):</label>
-  <input type="number" id="stress" name="stress" min="1" max="10"><br>
-
-  <label for="anxiety">Anxiety level today (1 = none, 10 = extreme):</label>
-  <input type="number" id="anxiety" name="anxiety" min="1" max="10"><br>
-
-  <!-- Motivation & Focus -->
-  <label for="motivation">Motivation level today (1 = none, 10 = high):</label>
-  <input type="number" id="motivation" name="motivation" min="1" max="10"><br>
-
-  <label for="focus">Focus/concentration today (1 = poor, 10 = excellent):</label>
-  <input type="number" id="focus" name="focus" min="1" max="10"><br>
-
-  <!-- Social Interaction -->
-  <label for="social">Did you connect with friends/family today?</label>
-  <select id="social" name="social">
-    <option value="none">None</option>
-    <option value="some">Some</option>
-    <option value="a lot">A lot</option>
-  </select><br>
-
-  <!-- Coping Strategies -->
-  <label for="coping">Coping strategies used today (select all that apply):</label><br>
-  <input type="checkbox" name="coping" value="meditation"> Meditation / Mindfulness<br>
-  <input type="checkbox" name="coping" value="exercise"> Exercise / Physical Activity<br>
-  <input type="checkbox" name="coping" value="journaling"> Journaling / Reflection<br>
-  <input type="checkbox" name="coping" value="talking"> Talking with someone<br>
-  <input type="checkbox" name="coping" value="other"> Other<br>
-
-  <label for="otherCoping">If other, describe:</label>
-  <input type="text" id="otherCoping" name="otherCoping"><br>
-
-  <!-- Feelings -->
-  <p>Current feelings (select all that apply):</p>
-  <input type="checkbox" id="feeling1" name="feelings" value="excited"><label for="feeling1"> Excited</label><br>
-  <input type="checkbox" id="feeling2" name="feelings" value="happy"><label for="feeling2"> Happy</label><br>
-  <input type="checkbox" id="feeling3" name="feelings" value="sad"><label for="feeling3"> Sad</label><br>
-  <input type="checkbox" id="feeling4" name="feelings" value="worried"><label for="feeling4"> Worried</label><br>
-  <input type="checkbox" id="feeling5" name="feelings" value="tired"><label for="feeling5"> Tired</label><br>
-  <input type="checkbox" id="feeling6" name="feelings" value="calm"><label for="feeling6"> Calm</label><br>
-  <input type="checkbox" id="feeling7" name="feelings" value="other"><label for="feeling7"> Other</label><br>
-
-  <label for="otherFeeling">If other, describe:</label>
-  <input type="text" id="otherFeeling" name="otherFeeling"><br>
-
-  <!-- Additional Notes -->
-  <label for="otherSymptoms">Other symptoms / notes:</label>
-  <input type="text" id="otherSymptoms" name="otherSymptoms"><br>
-
-  <!-- Date -->
-  <label for="date">Date:</label>
-  <input type="date" id="date" name="date" required><br>
-
-  <input type="submit">
-</form>

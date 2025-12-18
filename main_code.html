@@ -273,6 +273,189 @@ async function loadPastEntries(uid) {
 }
 </script>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Check-In</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.16.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.16.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.16.0/firebase-firestore.js"></script>
+</head>
+<body>
+
+<h2>Daily Check-In</h2>
+
+<button id="loginBtn">Login with Google</button>
+<button id="logoutBtn" style="display:none;">Logout</button>
+<p id="userInfo"></p>
+
+<form id="checkup" style="display:none;">
+  <!-- Energy -->
+  <label for="Energy">Energy (1-10):</label>
+  <input type="number" id="Energy" name="Energy" min="1" max="10" required><br>
+
+  <!-- Sleep -->
+  <label for="Sleep">Hours of sleep:</label>
+  <input type="number" id="Sleep" name="Sleep" min="0" max="24" required><br>
+
+  <!-- Appetite -->
+  <label for="food">Appetite change:</label>
+  <select id="food" name="appetite">
+    <option value="decrease">Decrease</option>
+    <option value="increase">Increase</option>
+    <option value="stay same">Stayed the same</option>
+  </select><br>
+
+  <!-- Mood -->
+  <label for="sad">Feeling hopeless/depressed today?</label>
+  <select id="sad" name="sad">
+    <option value="no">No or n/a</option>
+    <option value="more than yesterday">More than yesterday</option>
+    <option value="less than yesterday">Less than yesterday</option>
+    <option value="the same">About the same</option>
+  </select><br>
+
+  <!-- Feelings -->
+  <p>Current feelings:</p>
+  <input type="checkbox" id="feeling1" name="feelings" value="excited"><label for="feeling1"> Excited</label><br>
+  <input type="checkbox" id="feeling2" name="feelings" value="happy"><label for="feeling2"> Happy</label><br>
+  <input type="checkbox" id="feeling3" name="feelings" value="sad"><label for="feeling3"> Sad</label><br>
+  <input type="checkbox" id="feeling4" name="feelings" value="worried"><label for="feeling4"> Worried</label><br>
+  <input type="checkbox" id="feeling5" name="feelings" value="tired"><label for="feeling5"> Tired</label><br>
+  <input type="checkbox" id="feeling6" name="feelings" value="calm"><label for="feeling6"> Calm</label><br>
+  <input type="checkbox" id="feeling7" name="feelings" value="other"><label for="feeling7"> Other</label><br>
+
+  <label for="otherFeeling">If other, what?</label>
+  <input type="text" id="otherFeeling" name="otherFeeling"><br>
+
+  <label for="otherSymptoms">Other symptoms:</label>
+  <input type="text" id="otherSymptoms" name="otherSymptoms"><br>
+
+  <label for="date">Date:</label>
+  <input type="date" id="date" name="date" required><br>
+
+  <input type="submit">
+</form>
+
+<h3>Your Past Entries:</h3>
+<div id="pastEntries"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
+// Firebase config
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
 
+const app = firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+const loginBtn = document.getElementById("loginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+const userInfo = document.getElementById("userInfo");
+const form = document.getElementById("checkup");
+const pastEntries = document.getElementById("pastEntries");
+
+// Login / Logout
+loginBtn.addEventListener("click", () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider);
+});
+
+logoutBtn.addEventListener("click", () => auth.signOut());
+
+auth.onAuthStateChanged(user => {
+  if (user) {
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "inline";
+    form.style.display = "block";
+    userInfo.textContent = `Logged in as ${user.displayName} (${user.email})`;
+    loadPastEntries(user.uid);
+  } else {
+    loginBtn.style.display = "inline";
+    logoutBtn.style.display = "none";
+    form.style.display = "none";
+    userInfo.textContent = "";
+    pastEntries.innerHTML = "";
+  }
+});
+
+// Form submission
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const user = auth.currentUser;
+  if (!user) return alert("Please log in first!");
+
+  const feelingsChecked = Array.from(document.querySelectorAll('input[name="feelings"]:checked')).map(f => f.value);
+
+  await db.collection("checkins").add({
+    uid: user.uid,
+    Energy: document.getElementById("Energy").value,
+    Sleep: document.getElementById("Sleep").value,
+    appetite: document.getElementById("food").value,
+    sad: document.getElementById("sad").value,
+    feelings: feelingsChecked,
+    otherFeeling: document.getElementById("otherFeeling").value,
+    otherSymptoms: document.getElementById("otherSymptoms").value,
+    date: document.getElementById("date").value,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  });
+
+  alert("Check-in submitted!");
+  form.reset();
+  loadPastEntries(user.uid);
+});
+
+// Load past entries
+async function loadPastEntries(uid) {
+  pastEntries.innerHTML = "";
+  const snapshot = await db.collection("checkins")
+    .where("uid", "==", uid)
+    .orderBy("timestamp", "desc")
+    .get();
+
+  snapshot.forEach(doc => {
+    const data = doc.data();
+    const entryDiv = document.createElement("div");
+    entryDiv.style.border = "1px solid gray";
+    entryDiv.style.margin = "5px";
+    entryDiv.style.padding = "5px";
+    entryDiv.innerHTML = `
+      <strong>Date:</strong> ${data.date}<br>
+      <strong>Energy:</strong> ${data.Energy}<br>
+      <strong>Sleep:</strong> ${data.Sleep}<br>
+      <strong>Appetite:</strong> ${data.appetite}<br>
+      <strong>Sadness:</strong> ${data.sad}<br>
+      <strong>Feelings:</strong> ${data.feelings.join(", ")}<br>
+      <strong>Other Feeling:</strong> ${data.otherFeeling}<br>
+      <strong>Other Symptoms:</strong> ${data.otherSymptoms}<br>
+    `;
+    pastEntries.appendChild(entryDiv);
+  });
+}
+</body>
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+form div, form label {
+  margin-bottom: 10px;
+}
+
+input, select {
+  margin-bottom: 10px;
+}
+</html>

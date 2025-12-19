@@ -1,11 +1,4 @@
-
-  <script>
-  <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
-  
-  const firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyAbpBMm_zpny9e8xj9bgp6wNf4sND6ty38",
     authDomain: "mentalhealthtracker-8d8cf.firebaseapp.com",
     projectId: "mentalhealthtracker-8d8cf",
@@ -13,30 +6,14 @@
     messagingSenderId: "234371734335",
     appId: "1:234371734335:web:c36a4468a596119930918a",
     measurementId: "G-HRKMZRVRBF"
-  };
+};
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-// attempt at login
-
-loginBtn.addEventListener("click", () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider)
-    .then((result) => {
-      console.log("Logged in as", result.user.displayName);
-    })
-    .catch((error) => {
-      console.error("Login error:", error);
-      alert("Login failed. Check console for details.");
-    });
-});
-
-// back to other stuff 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
+// DOM elements
 const loginBtn = document.getElementById("loginBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 const userInfo = document.getElementById("userInfo");
@@ -46,7 +23,12 @@ const pastEntries = document.getElementById("pastEntries");
 // Login / Logout
 loginBtn.addEventListener("click", () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider);
+  auth.signInWithPopup(provider)
+    .then(result => console.log("Logged in as", result.user.displayName))
+    .catch(error => {
+      console.error("Login error:", error);
+      alert("Login failed. Check console for details.");
+    });
 });
 
 logoutBtn.addEventListener("click", () => auth.signOut());
@@ -139,5 +121,3 @@ async function loadPastEntries(uid) {
     pastEntries.appendChild(div);
   });
 }
-
-</script>

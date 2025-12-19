@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<style>
 /* General page styling */
 body {
   font-family: Arial, sans-serif;
@@ -102,5 +103,5 @@ input[type="submit"]:hover {
     margin: 10px 0;
   }
 }
-
+</style>
 </html>

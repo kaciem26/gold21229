@@ -4,11 +4,7 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  
   const firebaseConfig = {
     apiKey: "AIzaSyAbpBMm_zpny9e8xj9bgp6wNf4sND6ty38",
     authDomain: "mentalhealthtracker-8d8cf.firebaseapp.com",
@@ -22,7 +18,21 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+// attempt at login
 
+loginBtn.addEventListener("click", () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider)
+    .then((result) => {
+      console.log("Logged in as", result.user.displayName);
+    })
+    .catch((error) => {
+      console.error("Login error:", error);
+      alert("Login failed. Check console for details.");
+    });
+});
+
+// back to other stuff 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
@@ -131,4 +141,3 @@ async function loadPastEntries(uid) {
 }
 
 </script>
-</html>

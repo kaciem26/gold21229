@@ -20,15 +20,18 @@ const userInfo = document.getElementById("userInfo");
 const form = document.getElementById("checkup");
 const pastEntries = document.getElementById("pastEntries");
 
-// Login / Logout
-loginBtn.addEventListener("click", () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider)
-    .then(result => console.log("Logged in as", result.user.displayName))
-    .catch(error => {
-      console.error("Login error:", error);
-      alert("Login failed. Check console for details.");
-    });
+
+loginBtn.addEventListener("click", async () => {
+  try {
+    console.log("Login clicked");
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const result = await auth.signInWithPopup(provider);
+    console.log("Login successful:", result.user);
+    alert(`Logged in as ${result.user.displayName}`);
+  } catch (err) {
+    console.error("Login failed:", err);
+    alert("Login failed, see console.");
+  }
 });
 
 logoutBtn.addEventListener("click", () => auth.signOut());
